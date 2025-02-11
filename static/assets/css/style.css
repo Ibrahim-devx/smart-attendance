@@ -1,0 +1,102 @@
+#main{
+    background: linear-gradient(rgb(255, 255, 255), rgb(94, 80, 93));
+
+}
+.card-container {
+    margin-left:80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap:80px;
+}
+@media (max-width: 860px) {
+    .card-container {
+    grid-template-columns:1fr;
+    }
+}
+.card {
+    padding: 10px;
+    margin: 10px;
+    position: relative;
+    /*width: 350px;*/
+    width: 250px;
+    /* height: 490px; */
+    height: 350px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 35px rgba(0,0,0,0.15);
+    transition: 0.5s;
+}
+.card:hover {
+    height: 400px;
+    width: 300px
+}
+.logooo{
+    height: 200px;
+ }
+.imgBox{
+    position: absolute;
+    left: 50%;
+    top:-50px;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    background:#fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.card:hover .imgBox{
+
+    width: 200px;
+    height: 200px;
+}
+.imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.card .content .details {
+    text-align: center;
+    width: 100%;
+    transition: 0.5s;
+}
+
+
+.card .content .details h2{
+    margin-button:50px;
+    font-size: 1.5rem;
+    font-weight: 1200;
+    /*line-height: 1.2em;*/
+}
+
+
+.card .content .details .data h3{
+    font-size: 1.0em;
+    color: #555;
+    /*line-height: 1.2em;*/
+    font-weight: 600;
+    text-align: center;
+    padding-bottom:10px
+}
+.status h3{
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #a52a2a;
+}
+.button {
+margin:10px
+}

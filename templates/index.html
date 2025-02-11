@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smart Attendance</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="static/assets/css/main.css" />
+    <link rel="stylesheet" href="static/assets/css/style.css" />
+  </head>
+  <body class="is-preload">
+    <!-- Header -->
+    <div id="header">
+      <img class="logooo" src="static/logo/attendance.png" />
+      <h1>Smart Attendance</h1>
+      <p>
+        Welcome to the Smart Attendance System, a modern solution designed to
+        streamline attendance tracking. Our system combines facial recognition
+        technology with real-time data to ensure accurate attendance records,
+        effortlessly.
+      </p>
+    </div>
+
+    <!-- Main -->
+    <div id="main">
+      <header class="major container medium">
+        <h1 style="font-size: 1.5rem;">Students Attendance</h1>
+        <h3>Date: {{ date }}</h3>
+        <h3>Time: {{ time }}</h3>
+        <a href="{{ url_for('video_feed') }}" class="button" target="_blank">Start</a>
+        <button id="stopRecording" class="button" onclick="stopRecording()">Stop</button>
+      </header>
+      <div class="card-container" id="card-container">
+        <!-- Student cards will be dynamically inserted here by JavaScript -->
+      </div>
+    </div>
+
+    <script>
+      // Function to stop recording
+      function stopRecording() {
+        fetch('/stop_recording', {
+          method: 'GET'
+        })
+          .then(response => {
+            if (response.ok) {
+              alert('Recording stopped.');
+            } else {
+              alert('Failed to stop recording.');
+            }
+          })
+          .catch(error => {
+            alert('Failed to stop recording.');
+          });
+      }
+
+      // Function to fetch attendance data and update the page
+      function fetchAttendanceData() {
+        fetch('/get_attendance_data')
+          .then(response => response.json())
+          .then(data => {
+            const cardContainer = document.getElementById('card-container');
+            cardContainer.innerHTML = ''; // Clear existing cards
+
+            // Create and append new cards for each student
+            data.forEach(student => {
+              const card = document.createElement('div');
+              card.className = 'card';
+
+              card.innerHTML = `
+                <div class="imgBox">
+                  <img src="static/train_images/${student[0]}.jpg" alt="student_photo" />
+                </div>
+                <div class="content">
+                  <div class="details">
+                    <h2>${student[0]}</h2>
+                    <div class="status">
+                      <h3>${student[1]}</h3>
+                    </div>
+                    <div class="data">
+                      <h3>Date: ${student[3]}</h3>
+                      <h3>Time: ${student[2]}</h3>
+                    </div>
+                  </div>
+                </div>
+              `;
+
+              cardContainer.appendChild(card);
+            });
+          })
+          .catch(error => {
+            console.error('Error fetching attendance data:', error);
+          });
+      }
+
+      // Fetch attendance data every 2 seconds
+      setInterval(fetchAttendanceData, 2000);
+
+      // Fetch data immediately when the page loads
+      fetchAttendanceData();
+    </script>
+  </body>
+</html>
