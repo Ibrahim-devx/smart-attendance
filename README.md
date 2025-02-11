@@ -45,7 +45,7 @@ The system performs the following operations:
 ---
 
 ### 4. Student Attendance Records
-![Student Attendance](static/logo/readme_demo_images/student_attendance.png) 
+![Student Attendance](static/logo/readme_demo_images/student_atteendance.png) 
 
 The attendance records are displayed on the website, showing the student's name, status, date, and time.
 
@@ -66,19 +66,28 @@ The attendance records are displayed on the website, showing the student's name,
    ```bash
     python -m venv venv
 3. Activate the virtual environment:
-   On Windows
+   On Windows:
+```bash
+   venv\Scripts\activate
+```
+  On macOS/Linux:
    ```bash
-      venv\Scripts\activate
-  On macOS/Linux
+      source venv/bin/activate
+```
 
-        source venv/bin/activate
-
-4 .Install dependencies:
+4. Install dependencies:
      ```bash
-    pip install -r requirements.txt
+     pip install -r requirements.txt
 
 5. Set up environment variables
-
+```plaintext
+EMAIL=your_email@gmail.com
+EMAIL_PASSWORD=your_email_password
+WHATSAPP_ID=your_whatsapp_id
+WHATSAPP_API_TOKEN=your_whatsapp_api_token
+ALLOWED_HOURS=8,10,12
+REMOTE_SERVER=one.one.one.one
+```
 6.Run the application
 ```bash
 python main.py
